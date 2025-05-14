@@ -50,5 +50,25 @@ public class BankAccount {
         // TODO: Safely make the changes
         // HINT: Both accounts need to be locked, while the changes are being made
         // HINT: Be cautious of potential deadlocks.
+        BankAccount firstLock , secondLock;
+        if(this.id < target.id){
+            firstLock = this;
+            secondLock = target;
+        }
+        else {
+            firstLock = target;
+            secondLock = this;
+        }
+        firstLock.getLock().lock();
+        secondLock.getLock().lock();
+
+        try {
+            this.balance -= amount;
+            target.balance += amount;
+        } finally {
+            secondLock.getLock().unlock();
+            firstLock.getLock().unlock();
+        }
+
     }
 }
