@@ -27,10 +27,23 @@ public class BankAccount {
 
     public void deposit(int amount) {
         // TODO: Safely add to balance.
+        lock.lock();
+        try {
+            balance += amount;
+        } finally {
+            lock.unlock();
+        }
+
     }
 
     public void withdraw(int amount) {
         // TODO: Safely withdraw from balance.
+        lock.lock();
+        try {
+            balance -= amount;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void transfer(BankAccount target, int amount) {
