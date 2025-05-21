@@ -84,3 +84,25 @@ public class AtomicDemo {
     ![alt text](image-2.png)
 
 ---  
+
+### 🧮 Pi (π) Estimation - Monte Carlo Algorithm
+
+ - Was the multi-threaded implementation always faster than the single-threaded one?
+
+  not always 
+    
+  - If yes, why?
+
+  - If not, what factors are the cause and what can you do to mitigate these issues?
+
+    * Limited CPU Resources
+
+        * If the number of threads > number of physical cores, threads will compete for CPU, causing slowdowns.
+      
+    * Garbage Collection and Randomness
+
+      * Many Random objects in different threads can lead to contention if Random is shared improperly.
+
+      * Java’s Random isn't thread-safe and can create bottlenecks.
+
+
